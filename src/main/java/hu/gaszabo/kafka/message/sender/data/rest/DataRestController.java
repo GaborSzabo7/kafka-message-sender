@@ -7,7 +7,9 @@ import java.util.concurrent.Callable;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,9 +27,18 @@ public class DataRestController {
 	}
 
 	@PutMapping(value = "/send")
-	public Callable<ResponseEntity<Void>> send(final String text) {
+	public Callable<ResponseEntity<Void>> send(@RequestBody final String text) {
 		return () -> {
 			dataMessageSender.send(text);
+			return new ResponseEntity<>(NO_CONTENT);
+		};
+	}
+
+	@PutMapping(value = "/send/{multiplier}")
+	public Callable<ResponseEntity<Void>> sendMultipleTimes( //
+			@PathVariable final int multiplier, @RequestBody final String text) {
+		return () -> {
+			dataMessageSender.sendMultipleTimes(multiplier, text);
 			return new ResponseEntity<>(NO_CONTENT);
 		};
 	}

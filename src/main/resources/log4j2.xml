@@ -7,7 +7,8 @@
 	</Appenders>
 	<Loggers>
 		<Logger name="org.apache.kafka" level="warn" additivity="false" />
-		<Root level="warn">
+		<Logger name="org.springframework.kafka" level="debug" additivity="false" />
+		<Root level="trace">
 			<AppenderRef ref="Console" />
 		</Root>
 	</Loggers>
