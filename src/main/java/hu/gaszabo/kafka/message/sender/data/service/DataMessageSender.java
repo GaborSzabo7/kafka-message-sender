@@ -68,7 +68,7 @@ public class DataMessageSender {
 			kafkaTemplate //
 					.send(createMessage(data)) //
 					.addCallback(result -> {
-						log.debug("Message successfully sent: {}", result);
+						log.debug("Message successfully sent");
 					}, e -> {
 						throw new IllegalStateException(e);
 					});

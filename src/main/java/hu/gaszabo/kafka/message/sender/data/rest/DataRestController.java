@@ -43,4 +43,11 @@ public class DataRestController {
 		};
 	}
 
+	@PutMapping(value = "/send/sync/{multiplier}")
+	public ResponseEntity<Void> syncSendMultipleTimes( //
+			@PathVariable final int multiplier, @RequestBody final String text) {
+		dataMessageSender.sendMultipleTimes(multiplier, text);
+		return new ResponseEntity<>(NO_CONTENT);
+	}
+
 }

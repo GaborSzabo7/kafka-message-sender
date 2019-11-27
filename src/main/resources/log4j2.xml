@@ -6,9 +6,13 @@
 		</Console>
 	</Appenders>
 	<Loggers>
-		<Logger name="org.apache.kafka" level="warn" additivity="false" />
-		<Logger name="org.springframework.kafka" level="debug" additivity="false" />
-		<Root level="trace">
+		<Logger name="org.apache.kafka" level="warn" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		<Logger name="hu.gaszabo.kafka.message.sender" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		<Root level="warn">
 			<AppenderRef ref="Console" />
 		</Root>
 	</Loggers>
